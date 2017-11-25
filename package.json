@@ -1,0 +1,23 @@
+{
+  "name": "spotify-node-api",
+  "version": "1.0.0",
+  "description": "Spotify Node API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "spotify",
+    "node",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5",
+    "spotify-web-api-node": "^2.5.0"
+  }
+}
