@@ -26,28 +26,22 @@ app.get('/', (req, res) => {
 app.get('/api/authenticate/client', (req, res) => {
   spotifyClient.authenticate()
     .then(response => {
-      console.log('auth resp: ', response);
-      res.send('AUTH SUCCESS!');
+      res.send(response);
     })
     .catch(error => {
-      console.error('auth error: ', error);
-      res.status(500).send('AUTH ERROR!');
+      res.status(500).send(error);
     })
 });
 
 app.get('/api/search/playlist', (req, res) => {
   const searchQuery = encodeURI(req.query.q);
-  console.log('query: ', req.query.q);
-  console.log('query coded: ', searchQuery);
 
   spotifyClient.searchPlaylists(searchQuery)
     .then(response => {
-      console.log('api response: ', response);
-      res.send(JSON.stringify(response, undefined, 2));
+      res.send(response);
     })
     .catch(error => {
-      console.error('api error: ', error);
-      res.status(403).send('API ERROR!');
+      res.status(error.status || 500).send(error);
     });
 });
 
