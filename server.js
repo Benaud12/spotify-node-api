@@ -1,17 +1,23 @@
-const SpotifyWebApi = require('spotify-web-api-node');
 const rp = require('request-promise-native');
+const cors = require('cors');
 const express = require('express');
 const app = express();
+const SpotifyClient = require('./lib/SpotifyClient');
 
 const PORT = process.env.PORT || 3000;
-
-const SpotifyClient = require('./lib/SpotifyClient');
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
+
 const spotifyClient = new SpotifyClient({
   clientId : clientId,
   clientSecret : clientSecret
 });
+
+const corsOptions = {
+  origin: [/http:\/\/localhost.*/, /http:\/\/micks-pi-factory\.local.*/]
+};
+
+app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
   res.send('Oh HIYA!');
